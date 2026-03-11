@@ -3,365 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leggere 90 — Oferta Especial</title>
+<title>Tudo certo — Leggere 30</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0F1117;
-    --surf: #1A1D27;
-    --surf2: #232736;
-    --cream: #F5F0E8;
-    --sage: #7A9E7E;
-    --gold: #C9A84C;
-    --clay: #B07C5A;
-    --red: #E05C5C;
-    --green: #5CB87A;
-    --muted: #6B7280;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--bg);
-    color: var(--cream);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0;
-  }
+  :root{--bg:#0F1117;--surf:#1A1D27;--surf2:#232736;--cream:#F5F0E8;--gold:#C9A84C;--clay:#B07C5A;--green:#5CB87A;--muted:#6B7280;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+  .container{max-width:560px;padding:48px 24px;text-align:center;position:relative;z-index:1;}
 
-  .container { max-width: 640px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  .check-circle{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--green),#3d9958);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;box-shadow:0 0 40px rgba(92,184,122,0.3);animation:popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;}
+  .check-circle svg{width:36px;height:36px;}
 
-  /* ESPERA — faixa topo */
-  .wait-bar {
-    background: linear-gradient(135deg, var(--clay), var(--gold));
-    text-align: center;
-    padding: 12px 24px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--bg);
-    font-weight: 600;
-    text-transform: uppercase;
-    position: sticky; top: 0; z-index: 10;
-  }
+  .label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--green);text-transform:uppercase;margin-bottom:12px;animation:fadeUp 0.6s ease 0.3s both;opacity:0;}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,40px);line-height:1.2;margin-bottom:16px;animation:fadeUp 0.6s ease 0.4s both;opacity:0;}
+  .subtitle{color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:40px;animation:fadeUp 0.6s ease 0.5s both;opacity:0;}
+  .subtitle strong{color:var(--cream);}
 
-  /* HERO */
-  .hero {
-    text-align: center;
-    padding: 52px 0 36px;
-    animation: fadeDown 0.7s ease both;
-  }
+  /* Próximos passos */
+  .steps{background:var(--surf);border:1px solid var(--surf2);border-radius:16px;padding:28px;text-align:left;margin-bottom:32px;animation:fadeUp 0.6s ease 0.6s both;opacity:0;position:relative;overflow:hidden;}
+  .steps::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--clay),var(--gold));}
+  .steps-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:20px;}
+  .step{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;}
+  .step:last-child{margin-bottom:0;}
+  .step-num{width:28px;height:28px;border-radius:50%;background:var(--surf2);border:1px solid var(--surf2);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:12px;color:var(--gold);flex-shrink:0;margin-top:1px;}
+  .step-content h4{font-size:14px;font-weight:600;margin-bottom:3px;}
+  .step-content p{font-size:13px;color:var(--muted);line-height:1.5;}
 
-  .hero .eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 3px;
-    color: var(--clay); text-transform: uppercase;
-    margin-bottom: 16px; display: block;
-  }
+  /* Reminder upsell suave */
+  .soft-upsell{background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.15);border-radius:12px;padding:20px 24px;margin-bottom:32px;animation:fadeUp 0.6s ease 0.7s both;opacity:0;}
+  .soft-upsell p{font-size:13px;color:var(--muted);line-height:1.6;}
+  .soft-upsell a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;}
 
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 5vw, 42px);
-    line-height: 1.2; margin-bottom: 16px;
-  }
+  footer{font-size:12px;color:var(--muted);animation:fadeUp 0.6s ease 0.8s both;opacity:0;}
+  footer a{color:var(--muted);text-decoration:underline;}
 
-  .hero h1 em { color: var(--clay); font-style: italic; }
-
-  .hero p {
-    color: var(--muted); font-size: 16px;
-    line-height: 1.7; max-width: 500px; margin: 0 auto;
-  }
-
-  /* CARD PRINCIPAL */
-  .main-card {
-    background: var(--surf);
-    border: 1px solid var(--surf2);
-    border-radius: 16px; overflow: hidden;
-    margin-bottom: 32px;
-    animation: fadeUp 0.7s ease 0.2s both;
-    position: relative;
-  }
-  .main-card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--clay), var(--gold), var(--clay));
-  }
-
-  .card-body { padding: 36px 40px; }
-
-  .card-tag {
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 3px; color: var(--clay);
-    text-transform: uppercase; margin-bottom: 20px; display: block;
-  }
-
-  .card-body h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(22px, 3.5vw, 30px);
-    line-height: 1.25; margin-bottom: 12px;
-  }
-  .card-body h2 em { color: var(--gold); font-style: italic; }
-
-  .card-body .desc {
-    color: var(--muted); font-size: 15px;
-    line-height: 1.6; margin-bottom: 28px;
-  }
-
-  /* O QUE INCLUI */
-  .includes { margin-bottom: 28px; }
-  .includes-label {
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 2px; color: var(--muted);
-    text-transform: uppercase; margin-bottom: 12px;
-  }
-  .include-item {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 10px; font-size: 14px;
-  }
-  .include-item svg { flex-shrink: 0; color: var(--green); }
-
-  /* COMPARATIVO COMPACTO */
-  .compare-strip {
-    background: var(--surf2); border-radius: 10px;
-    padding: 16px 20px; margin-bottom: 28px;
-    display: flex; align-items: center; justify-content: space-around;
-    gap: 12px; flex-wrap: wrap;
-  }
-  .compare-item {
-    text-align: center;
-  }
-  .compare-item .ci-label {
-    font-family: 'DM Mono', monospace; font-size: 9px;
-    letter-spacing: 1.5px; color: var(--muted);
-    text-transform: uppercase; margin-bottom: 4px;
-  }
-  .compare-item .ci-val {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; font-weight: 700;
-  }
-  .compare-item .ci-val.green { color: var(--green); }
-  .compare-item .ci-val.clay  { color: var(--clay);  }
-  .compare-item .ci-val.gold  { color: var(--gold);  }
-  .compare-sep { color: var(--surf2); font-size: 20px; color: var(--muted); }
-
-  /* PREÇO */
-  .price-block {
-    display: flex; align-items: center;
-    justify-content: space-between; flex-wrap: wrap;
-    gap: 12px; margin-bottom: 20px;
-    background: var(--surf2); border-radius: 10px;
-    padding: 16px 20px;
-  }
-  .price-left .original {
-    font-size: 13px; color: var(--muted);
-    text-decoration: line-through; margin-bottom: 2px;
-  }
-  .price-left .promo {
-    font-family: 'Playfair Display', serif;
-    font-size: 38px; color: var(--gold); line-height: 1;
-  }
-  .price-left .promo span {
-    font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--muted);
-  }
-  .price-right .savings {
-    background: rgba(92,184,122,0.12); color: var(--green);
-    font-size: 12px; font-weight: 500; padding: 5px 12px;
-    border-radius: 20px; display: inline-block; margin-bottom: 4px;
-  }
-  .price-right .note { font-size: 11px; color: var(--muted); }
-
-  /* BOTÕES */
-  .btn-yes {
-    display: block; width: 100%;
-    background: linear-gradient(135deg, var(--clay), var(--gold));
-    color: var(--bg); text-align: center; padding: 18px;
-    border-radius: 10px; font-size: 16px; font-weight: 600;
-    text-decoration: none; cursor: pointer; border: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    margin-bottom: 12px;
-    box-shadow: 0 8px 24px rgba(176,124,90,0.3);
-    letter-spacing: 0.3px; font-family: 'DM Sans', sans-serif;
-  }
-  .btn-yes:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(176,124,90,0.4); }
-
-  .btn-no {
-    display: block; width: 100%; background: none; border: none;
-    color: var(--muted); font-size: 13px; text-align: center;
-    cursor: pointer; padding: 8px;
-    text-decoration: underline; text-underline-offset: 3px;
-    transition: color 0.2s; font-family: 'DM Sans', sans-serif;
-  }
-  .btn-no:hover { color: var(--cream); }
-
-  .guarantee {
-    display: flex; align-items: center; justify-content: center;
-    gap: 8px; margin-top: 14px; font-size: 12px; color: var(--muted);
-  }
-
-  /* DIFERENCIAL */
-  .diff-section {
-    margin-bottom: 32px;
-    animation: fadeUp 0.7s ease 0.3s both;
-  }
-  .diff-label {
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 3px; color: var(--muted);
-    text-transform: uppercase; margin-bottom: 16px; text-align: center;
-  }
-  .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .diff-item {
-    background: var(--surf); border: 1px solid var(--surf2);
-    border-radius: 10px; padding: 16px;
-  }
-  .diff-icon { font-size: 20px; margin-bottom: 8px; display: block; }
-  .diff-item h4 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-  .diff-item p { font-size: 12px; color: var(--muted); line-height: 1.4; }
-
-  /* FOOTER */
-  footer {
-    text-align: center; padding: 20px 0 60px;
-    font-size: 12px; color: var(--muted);
-    animation: fadeUp 0.7s ease 0.5s both;
-  }
-  footer a { color: var(--muted); text-decoration: underline; }
-
-  @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes fadeUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:translateY(0); } }
-
-  @media (max-width: 520px) {
-    .card-body { padding: 24px 20px; }
-    .diff-grid { grid-template-columns: 1fr; }
-    .price-block { flex-direction: column; align-items: flex-start; }
-    .compare-strip { flex-direction: column; gap: 8px; }
-    .compare-sep { display: none; }
-  }
+  @keyframes popIn{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:scale(1)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
-
-<div class="wait-bar">⚡ Espera — temos uma última oferta para você</div>
-
 <div class="container">
 
-  <!-- HERO -->
-  <div class="hero">
-    <span class="eyebrow">Oferta de última chance</span>
-    <h1>Não quer o ano todo?<br>Comece pelos <em>próximos 90 dias.</em></h1>
-    <p>O Leggere 90 é a versão trimestral do método — mesma estrutura, mesmo rigor, focado nos próximos 3 meses. Ideal para quem quer resultado rápido antes de pensar no ano inteiro.</p>
+  <div class="check-circle">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
   </div>
 
-  <!-- CARD PRINCIPAL -->
-  <div class="main-card">
-    <div class="card-body">
-      <span class="card-tag">Downsell exclusivo · Só aparece aqui</span>
+  <p class="label">Compra confirmada</p>
+  <h1>Boa decisão.<br>Agora é hora de usar.</h1>
+  <p class="subtitle">Você vai receber um e-mail com o link de acesso à planilha e aos módulos em breve. Confira sua <strong>caixa de entrada</strong> — e o spam, só por garantia.</p>
 
-      <h2>3 meses de controle real.<br><em>Por menos que um almoço.</em></h2>
-      <p class="desc">Painel trimestral, entrada de dados para 3 meses e metas com barra de progresso — tudo na mesma paleta visual do Leggere 30 que você já tem.</p>
-
-      <!-- INCLUI -->
-      <div class="includes">
-        <p class="includes-label">O que está incluído</p>
-        <div class="include-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Planilha Leggere 90 — 3 abas completas
-        </div>
-        <div class="include-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Painel Trimestral com KPIs e melhor mês
-        </div>
-        <div class="include-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Metas dos 90 dias com barra de progresso visual
-        </div>
-        <div class="include-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Acesso vitalício · Google Sheets
-        </div>
+  <div class="steps">
+    <p class="steps-label">Seus próximos passos</p>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Abra o e-mail de acesso</h4>
+        <p>O link da planilha e dos PDFs está lá. Clique em "Fazer uma cópia" no Google Drive para salvar no seu próprio Drive.</p>
       </div>
-
-      <!-- COMPARATIVO -->
-      <div class="compare-strip">
-        <div class="compare-item">
-          <div class="ci-label">Leggere 365</div>
-          <div class="ci-val clay">12 meses</div>
-        </div>
-        <div class="compare-sep">→</div>
-        <div class="compare-item">
-          <div class="ci-label">Leggere 90</div>
-          <div class="ci-val gold">3 meses</div>
-        </div>
-        <div class="compare-sep">·</div>
-        <div class="compare-item">
-          <div class="ci-label">Preço</div>
-          <div class="ci-val green">R$ 27</div>
-        </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Comece pelo Módulo 1</h4>
+        <p>O Raio-X do Mês é o ponto de partida. Leva menos de 20 minutos e já muda como você enxerga suas finanças.</p>
       </div>
-
-      <!-- PREÇO -->
-      <div class="price-block">
-        <div class="price-left">
-          <p class="original">Valor normal: R$ 47</p>
-          <p class="promo">R$ 27 <span>/ único</span></p>
-        </div>
-        <div class="price-right">
-          <div class="savings">Você economiza R$ 20</div>
-          <p class="note">Pagamento único · Sem mensalidade</p>
-        </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Preencha o Painel do mês atual</h4>
+        <p>Com a planilha aberta, siga o Mini-Guia de Uso. Os campos em destaque são os únicos que você precisa preencher.</p>
       </div>
-
-      <!-- BOTÃO SIM -->
-      <a href="https://pay.cakto.com.br/7smcjgw_795117" class="btn-yes">
-        Sim, quero o Leggere 90 por R$ 27 →
-      </a>
-
-      <!-- BOTÃO NÃO -->
-      <button class="btn-no" onclick="window.location.href='https://leggereobgsimp.netlify.app'">
-        Não, obrigado — já tenho o suficiente
-      </button>
-
-      <div class="guarantee">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-        Compra segura · Acesso imediato por e-mail
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Use o Checklist Semanal</h4>
+        <p>4 semanas de acompanhamento para transformar o controle financeiro num hábito real — não só numa tentativa.</p>
       </div>
     </div>
   </div>
 
-  <!-- DIFERENCIAL -->
-  <div class="diff-section">
-    <p class="diff-label">Por que 90 dias funciona</p>
-    <div class="diff-grid">
-      <div class="diff-item">
-        <span class="diff-icon">🧠</span>
-        <h4>Foco no curto prazo</h4>
-        <p>3 meses é o horizonte certo para criar hábitos sem se perder em projeções distantes.</p>
-      </div>
-      <div class="diff-item">
-        <span class="diff-icon">⚡</span>
-        <h4>Resultado rápido</h4>
-        <p>Em 90 dias você já sente a diferença no saldo e entende seus padrões de gasto.</p>
-      </div>
-      <div class="diff-item">
-        <span class="diff-icon">🎯</span>
-        <h4>Metas alcançáveis</h4>
-        <p>Metas trimestrais são mais fáceis de manter do que anuais — e mais motivadoras.</p>
-      </div>
-      <div class="diff-item">
-        <span class="diff-icon">📊</span>
-        <h4>Mesma qualidade</h4>
-        <p>Paleta V1 Dark, fórmulas automáticas e a mesma estrutura do Leggere 30 que você já tem.</p>
-      </div>
-    </div>
+  <div class="soft-upsell">
+    <p>Quando quiser expandir para uma visão anual completa — com projeções, metas trimestrais e painel de evolução — o <a href="https://legerre365.netlify.app">Leggere 365 está disponível aqui</a>.</p>
   </div>
+
+  <footer>© 2025 Leggere 30 · <a href="#">Suporte</a> · <a href="#">Política de Privacidade</a></footer>
 
 </div>
-
-<footer>© 2025 Leggere 30 · <a href="#">Suporte</a> · <a href="#">Política de Privacidade</a></footer>
-
 </body>
 </html>
